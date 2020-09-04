@@ -1,6 +1,9 @@
 import React from 'react';
-import Container from './reusableComponents/Container';
-import Logo from './Logo';
+import Container from '../container/container.component';
+import Logo from '../logo/logo.component';
+
+import './nav.styles.scss'
+
 const Nav = () => {
  return(
     <nav>
