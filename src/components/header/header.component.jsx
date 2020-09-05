@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './nav.styles.scss'
+import './header.styles.scss'
 
-const Nav = () => {
+const Header = () => {
  return(
     <nav>
       <div className='header'>
@@ -23,4 +23,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default Header

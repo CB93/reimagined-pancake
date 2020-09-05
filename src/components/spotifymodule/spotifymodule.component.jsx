@@ -1,5 +1,7 @@
 
 import React from 'react';
+import Card from 'react-bootstrap/Card'
+
 import TrackCard from '../trackcard/trackcard.component';
 
 import * as SpotifyFunctions from '../../spotifyFunctions'
@@ -32,6 +34,8 @@ render() {
     const { userTracks } = {...this.state}
     console.log(userTracks)
     return (
+      <Card>
+          <Card.Body>
         <div>
           {userTracks ?
             <div>
@@ -41,6 +45,8 @@ render() {
             </div>
           : null }
         </div>
+        </Card.Body>
+        </Card>
       
     )
   }

@@ -1,5 +1,7 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';import Nav from './components/nav/nav.component'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Header from './components/header/header.component'
+import Footer from './components/footer/footer.component'
 import HomePage from './pages/homepage/homepage.component';
 
 import './App.css';
@@ -9,10 +11,11 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Nav />
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-        </Switch>
+        <Header />
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+          </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );
