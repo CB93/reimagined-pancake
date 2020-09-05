@@ -2,8 +2,6 @@
 import React from 'react';
 import TrackCard from '../trackcard/trackcard.component';
 
-
-
 import * as SpotifyFunctions from '../../spotifyFunctions'
 
 class SpotifyModule extends React.Component {
