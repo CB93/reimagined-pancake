@@ -1,6 +1,5 @@
 
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import TrackCard from '../trackcard/trackcard.component';
 
 
@@ -35,7 +34,6 @@ render() {
     const { userTracks } = {...this.state}
     console.log(userTracks)
     return (
-      <Container maxWidth="md" fixed> 
         <div>
           {userTracks ?
             <div>
@@ -46,7 +44,6 @@ render() {
           : null }
         </div>
       
-      </Container>
     )
   }
 }
