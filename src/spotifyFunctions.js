@@ -9,7 +9,6 @@ export function redirectUrlToSpotifyForLogin(){
   const REDIRECT_URI = 'http://localhost:3000';
 
   const scopes = [
-    "user-modify-playback-state",
     "user-library-read",
     "user-library-modify",
     "playlist-read-private",
@@ -30,14 +29,13 @@ export function checkUrlForSpotifyAccessToken(){
     console.log(params)
     if (!accessToken) {
         return false
-    }
-    else {
+    } else {
         return accessToken
     }
 }
 
+//Parses query string that spotify sends back after redirection
 function getHashParams() {
-  //helper function to parse the query string that spotify sends back when you log in
   var hashParams = {};
   var e, r = /([^&;=]+)=?([^&;]*)/g,
       q = window.location.hash.substring(1);
@@ -48,19 +46,32 @@ function getHashParams() {
   return hashParams;
 }
 
+
 export function setAccessToken(accessToken) {
-    //since using spotifyApi as helper library you can set the access code once
-    //you get it and then not have to include it in every request
-    spotifyApi.setAccessToken(accessToken);
+  spotifyApi.setAccessToken(accessToken);
 }
 
+export async function getUserInformation() {
+    try {
+      const userInformation = await spotifyApi.getMe()
+      return userInformation
+    }
+    catch(err) {
+      console.error('Error getting users account information', err);
+    }
+}
+
+export async function getMySavedTracks() {
+  try {
+    const savedTracks = await spotifyApi.getMySavedTracks()
+    return savedTracks
+  }
+  catch(err) {
+    console.error('Error getting users saved track information', err);
+  }
 
 
-
-
-
-
-
+}
 
 
 
