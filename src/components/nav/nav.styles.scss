@@ -1,8 +1,11 @@
 .logo {
+  margin-left: 30px;
   text-decoration: none;
   font-size: 24px;
   line-height: 1;
   color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .logo span {
@@ -10,3 +13,38 @@
   font-weight: 800;
   margin-left: 2px;
 }
+
+nav {
+  width: 100%;
+  padding: 16px 0;
+  background: #353b80;
+}
+
+nav h2 {
+  color: #fff;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+
+
+  .options {
+    margin-right: 40px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 10px 15px;
+      text-decoration: none;
+      cursor: pointer;
+      color: white
+    }
+  }
+}
+
