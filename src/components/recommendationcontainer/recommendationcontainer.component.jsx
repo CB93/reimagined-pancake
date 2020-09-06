@@ -1,5 +1,4 @@
 import React from 'react';
-import Figure from 'react-bootstrap/Figure'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 
