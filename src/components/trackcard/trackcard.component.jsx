@@ -12,8 +12,8 @@ const TrackCard = ( props ) => {
     <ListGroup.Item>
       <Row>
         <Col xs={8} m={8} lg={8} xl={8}>
-          <p class="artist-name">{props.track.artists[0].name}</p>
-          <p>{props.track.name}</p>
+          <p className='artist-name'>{props.track.artists[0].name}</p>
+          <p className='track-name'>{props.track.name}</p>
         </Col>
         <Col>
         <Figure>

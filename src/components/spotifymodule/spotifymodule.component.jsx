@@ -1,38 +1,49 @@
 
 import React from 'react';
 import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
+
 import TrackCard from '../trackcard/trackcard.component';
 
 import './spotifymodule.styles.scss'
 
-
-
-
 import * as SpotifyFunctions from '../../spotifyFunctions'
+
+const moduleBuildState = () => ({
+  userTracks: null,
+  userTracksPageRef: 0
+});
 
 class SpotifyModule extends React.Component {
 
   constructor(props){
     super(props)
-    this.state = {
-      playlists: null,
-      userTracks: null
-    }
+    this.state = { ...moduleBuildState() }
   }
 
   async componentDidMount() {
     await SpotifyFunctions.setAccessToken(this.props.accessToken);
     const playlists = await SpotifyFunctions.getUserInformation();
-    const userTracks = await SpotifyFunctions.getMySavedTracks();
+    const userTracks = await SpotifyFunctions.getMySavedTracks(this.state.userTracksPageRef);
     
     this.setState({
       playlists: playlists,
       userTracks: userTracks
     });
+  }
+
+  getDifferentTracks = async() => {
+    const { userTracksPageRef } = this.state
+    const userTracks = await SpotifyFunctions.getMySavedTracks(userTracksPageRef + 20);
+    
+    this.setState ({
+      userTracks: userTracks,
+      userTracksPageRef: userTracksPageRef + 20
+    })
   }
 
 
@@ -62,9 +73,11 @@ render() {
           </ListGroup>
         </Card.Body>
       </Card>
+      <Button
+      
+      onClick={this.getDifferentTracks}></Button>
       </Container>
       </Col>
-
       </Row>
     )
   }

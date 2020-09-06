@@ -5,19 +5,19 @@ import * as SpotifyFunctions from '../../spotifyFunctions.js'
 
 class SpotifyContainer extends React.Component {
 
-    constructor(props) {
-      super(props)
-      this.state = {
-          loggedInToSpotify: false,
-          accessToken: null
-      }
+  constructor(props) {
+    super(props)
+    this.state = {
+        loggedInToSpotify: false,
+        accessToken: null
     }
+  }
     
-    // Checks URL when component mounts to see if there is an access token
-    componentDidMount(){
-      const accessToken = SpotifyFunctions.checkUrlForSpotifyAccessToken();
-      accessToken ? this.setState({loggedInToSpotify: true, accessToken: accessToken}) : this.setState({loggedInToSpotify: false, accessToken: null});
-    }
+  // Checks URL when component mounts to see if there is an access token
+  componentDidMount(){
+    const accessToken = SpotifyFunctions.checkUrlForSpotifyAccessToken();
+    accessToken ? this.setState({loggedInToSpotify: true, accessToken: accessToken}) : this.setState({loggedInToSpotify: false, accessToken: null});
+  }
 
   render() {
     return (

@@ -61,16 +61,17 @@ export async function getUserInformation() {
     }
 }
 
-export async function getMySavedTracks() {
+export async function getMySavedTracks(offset) {
+  
+  const options = {limit: 20, offset: offset}
+  
   try {
-    const savedTracks = await spotifyApi.getMySavedTracks()
+    const savedTracks = await spotifyApi.getMySavedTracks(options)
     return savedTracks
   }
   catch(err) {
     console.error('Error getting users saved track information', err);
   }
-
-
 }
 
 
