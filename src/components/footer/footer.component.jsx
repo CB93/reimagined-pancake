@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import './footer.styles.scss'
 
 const Footer = () => {
- return(
+  return (
     <div className='footer'>
       <nav>
         <Link to="/" className="logo">
           Caleb's Recipes<span>.</span>
-        </Link>    
+        </Link>
       </nav>
     </div>
 

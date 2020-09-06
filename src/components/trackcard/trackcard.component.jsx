@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 
 import './trackcard.styles.scss'
 
-const TrackCard = ( props ) => {
+const TrackCard = (props) => {
   return (
     <ListGroup.Item onClick={() => props.select(props.track.id, props.track.album.images[1].url)}>
       <Row>
@@ -15,14 +15,14 @@ const TrackCard = ( props ) => {
           <p className='track-name'>{props.track.name}</p>
         </Col>
         <Col>
-        <Figure>
-          <Figure.Image
-            width={70}
-            height={70}
-            alt="70x70"
-            src={props.track.album.images[1].url}
-          />
-        </Figure>
+          <Figure>
+            <Figure.Image
+              width={70}
+              height={70}
+              alt="70x70"
+              src={props.track.album.images[1].url}
+            />
+          </Figure>
         </Col>
       </Row>
     </ListGroup.Item>

@@ -7,7 +7,7 @@ class ConnectSpotify extends React.Component {
     return (
       <div className="ConnectSpotify">
         <a href={SpotifyFunctions.redirectUrlToSpotifyForLogin()}>
-            <button>Connect to Spotify</button>
+          <button>Connect to Spotify</button>
         </a>
       </div>
     );

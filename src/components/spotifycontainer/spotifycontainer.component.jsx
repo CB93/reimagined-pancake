@@ -8,21 +8,21 @@ class SpotifyContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        loggedInToSpotify: false,
-        accessToken: null
+      loggedInToSpotify: false,
+      accessToken: null
     }
   }
-    
+
   // Checks URL when component mounts to see if there is an access token
-  componentDidMount(){
+  componentDidMount() {
     const accessToken = SpotifyFunctions.checkUrlForSpotifyAccessToken();
-    accessToken ? this.setState({loggedInToSpotify: true, accessToken: accessToken}) : this.setState({loggedInToSpotify: false, accessToken: null});
+    accessToken ? this.setState({ loggedInToSpotify: true, accessToken: accessToken }) : this.setState({ loggedInToSpotify: false, accessToken: null });
   }
 
   render() {
     return (
       <div className="SpotifyContainer">
-          {!this.state.loggedInToSpotify ? <ConnectSpotify /> : <SpotifyModule accessToken={this.state.accessToken}/> }
+        {!this.state.loggedInToSpotify ? <ConnectSpotify /> : <SpotifyModule accessToken={this.state.accessToken} />}
       </div>
     );
   }

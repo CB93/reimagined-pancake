@@ -5,7 +5,7 @@ import './directory.styles.scss'
 const Directory = () => {
   return (
     <div className='directory-menu'>
-      <SpotifyContainer/>
+      <SpotifyContainer />
     </div>
   )
 }

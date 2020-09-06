@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import './header.styles.scss'
 
 const Header = () => {
- return(
+  return (
     <div className='header'>
       <nav>
         <div className='header-options'>
           <Link to="/" className="logo">
-          Caleb's Recipes<span>.</span>
-          </Link>    
+            Caleb's Recipes<span>.</span>
+          </Link>
           <div className='options'>
             <Link className='option' to='/sign-in'>
               SIGN IN
@@ -19,7 +19,7 @@ const Header = () => {
               PROFILE
             </Link>
           </div>
-          </div>
+        </div>
       </nav>
     </div>
   )

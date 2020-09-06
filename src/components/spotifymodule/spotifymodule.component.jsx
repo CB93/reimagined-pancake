@@ -23,7 +23,7 @@ const moduleBuildState = () => ({
 
 class SpotifyModule extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = { ...moduleBuildState() }
   }
@@ -33,7 +33,7 @@ class SpotifyModule extends React.Component {
     await SpotifyFunctions.setAccessToken(this.props.accessToken);
     const fetchedUserInfo = await SpotifyFunctions.getUserInformation();
     const fetchedUserTracks = await SpotifyFunctions.getMyTopTracks(this.state.userTracksPageRef);
-    
+
     this.setState({
       userInformation: fetchedUserInfo,
       userTracks: fetchedUserTracks
@@ -46,8 +46,8 @@ class SpotifyModule extends React.Component {
     const { userTracksPageRef } = this.state
     const newRef = is_next ? userTracksPageRef + 10 : userTracksPageRef - 10
     const userTracks = await SpotifyFunctions.getMyTopTracks(newRef);
-    
-    this.setState ({
+
+    this.setState({
       userTracks: userTracks,
       userTracksPageRef: newRef
     })
@@ -57,26 +57,26 @@ class SpotifyModule extends React.Component {
   isSelected = (id, albumURL) => {
     const { selectedSeeds } = this.state
     const index = selectedSeeds.map(e => e.id).indexOf(id)
-    
-    index != -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({id: id, url: albumURL})
-    
-    this.setState ({
-      selectedSeeds : selectedSeeds
+
+    index != -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ id: id, url: albumURL })
+
+    this.setState({
+      selectedSeeds: selectedSeeds
     })
   }
 
-render() {
-    const { userTracks, userTracksPageRef, selectedSeeds } = {...this.state}
+  render() {
+    const { userTracks, userTracksPageRef, selectedSeeds } = { ...this.state }
     console.log(this.state)
     return (
       <Row>
         <Col>
-      
+
         </Col>
         <Col xs={3} m={3} lg={3} xl={3}>
           {selectedSeeds.length ?
-            <SeedContainer seeds={selectedSeeds}></SeedContainer> 
-          : null}
+            <SeedContainer seeds={selectedSeeds}></SeedContainer>
+            : null}
           <Container>
             <Card className="favorite-card">
               <Card.Body>
@@ -86,12 +86,12 @@ render() {
                       {userTracks.items.map((element) => (
                         <TrackCard
                           key={element.id}
-                          select={this.isSelected} 
+                          select={this.isSelected}
                           track={element}>
                         </TrackCard>
-                        ))}
+                      ))}
                     </div>
-                  : null }
+                    : null}
                 </ListGroup>
               </Card.Body>
             </Card>
@@ -101,13 +101,19 @@ render() {
                 disabled={userTracksPageRef ? false : true}
               > Previous
               </Button>
-              <Button onClick={() => this.getOtherTracks(true)}>Next</Button>
+              <Button
+                onClick={() => this.getOtherTracks(true)}
+                disabled={userTracksPageRef === 40 ? true : false}
+              >Next</Button>
             </div>
+            <Button>
+              Generate Songs
+            </Button>
           </Container>
         </Col>
       </Row>
     )
   }
 }
-  
+
 export default SpotifyModule;

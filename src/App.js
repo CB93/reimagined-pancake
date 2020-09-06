@@ -10,13 +10,13 @@ import './App.styles.scss';
 const App = () => {
 
   return (
-      <BrowserRouter>
-        <Header />
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-          </Switch>
-        <Footer />
-      </BrowserRouter>
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
