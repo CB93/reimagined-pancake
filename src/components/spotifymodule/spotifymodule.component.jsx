@@ -15,7 +15,8 @@ import * as SpotifyFunctions from '../../spotifyFunctions'
 
 const moduleBuildState = () => ({
   userTracks: null,
-  userTracksPageRef: 0
+  userTracksPageRef: 0,
+  selectedSeeds: []
 });
 
 class SpotifyModule extends React.Component {
@@ -47,8 +48,13 @@ class SpotifyModule extends React.Component {
     })
   }
 
-  isSelected = () => {
+  isSelected = (id) => {
+    const { selectedSeeds } = this.state
+    selectedSeeds.push(id)
 
+    this.setState ({
+      selectedSeeds : selectedSeeds
+    })
   }
 
 
@@ -56,6 +62,8 @@ class SpotifyModule extends React.Component {
 
 render() {
     const { userTracks, userTracksPageRef } = {...this.state}
+    console.log(this.state)
+
     return (
       <Row>
         <Col>
@@ -68,15 +76,19 @@ render() {
                 <ListGroup>
                   {userTracks ?
                     <div>
-                      {userTracks.items.map((track, index) => (
-                        <TrackCard track={track.track}></TrackCard>
+                      {userTracks.items.map((element) => (
+                        <TrackCard
+                          key={element.track.id}
+                          select={this.isSelected} 
+                          track={element.track}>
+                        </TrackCard>
                         ))}
                     </div>
                   : null }
                 </ListGroup>
               </Card.Body>
             </Card>
-            <div class="button-group">
+            <div className="button-group">
               <Button
                 onClick={() => this.getOtherTracks(false)}
                 disabled={userTracksPageRef ? false : true}

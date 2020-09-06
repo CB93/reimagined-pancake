@@ -8,7 +8,7 @@ import './trackcard.styles.scss'
 
 const TrackCard = ( props ) => {
   return (
-    <ListGroup.Item>
+    <ListGroup.Item onClick={() => props.select(props.track.id)}>
       <Row>
         <Col xs={8} m={8} lg={8} xl={8}>
           <p className='artist-name'>{props.track.artists[0].name}</p>
