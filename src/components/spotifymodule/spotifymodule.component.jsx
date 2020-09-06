@@ -36,48 +36,56 @@ class SpotifyModule extends React.Component {
     });
   }
 
-  getDifferentTracks = async() => {
+  getOtherTracks = async (is_next) => {
     const { userTracksPageRef } = this.state
-    const userTracks = await SpotifyFunctions.getMySavedTracks(userTracksPageRef + 20);
+    const newRef = is_next ? userTracksPageRef + 20 : userTracksPageRef - 20 
+    const userTracks = await SpotifyFunctions.getMySavedTracks(newRef);
     
     this.setState ({
       userTracks: userTracks,
-      userTracksPageRef: userTracksPageRef + 20
+      userTracksPageRef: newRef
     })
+  }
+
+  isSelected = () => {
+
   }
 
 
 
 
 render() {
-    const { userTracks } = {...this.state}
-    console.log(userTracks)
+    const { userTracks, userTracksPageRef } = {...this.state}
     return (
       <Row>
         <Col>
 
-      </Col>
-      <Col xs={3} m={3} lg={3} xl={3}>
-
-      <Container>
-      <Card className="favorite-card">
-        <Card.Body>
-          <ListGroup>
-            {userTracks ?
-              <div>
-                {userTracks.items.map((track, index) => (
-                  <TrackCard track={track.track}></TrackCard>
-                  ))}
-              </div>
-            : null }
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      <Button
-      
-      onClick={this.getDifferentTracks}></Button>
-      </Container>
-      </Col>
+        </Col>
+        <Col xs={3} m={3} lg={3} xl={3}>
+          <Container>
+            <Card className="favorite-card">
+              <Card.Body>
+                <ListGroup>
+                  {userTracks ?
+                    <div>
+                      {userTracks.items.map((track, index) => (
+                        <TrackCard track={track.track}></TrackCard>
+                        ))}
+                    </div>
+                  : null }
+                </ListGroup>
+              </Card.Body>
+            </Card>
+            <div class="button-group">
+              <Button
+                onClick={() => this.getOtherTracks(false)}
+                disabled={userTracksPageRef ? false : true}
+              > Previous
+              </Button>
+              <Button onClick={() => this.getOtherTracks(true)}>Next</Button>
+            </div>
+          </Container>
+        </Col>
       </Row>
     )
   }

@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col'
 import './trackcard.styles.scss'
 
 const TrackCard = ( props ) => {
-  console.log (props)
   return (
     <ListGroup.Item>
       <Row>

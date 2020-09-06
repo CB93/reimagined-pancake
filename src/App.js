@@ -5,12 +5,11 @@ import Footer from './components/footer/footer.component'
 import HomePage from './pages/homepage/homepage.component';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import './App.css';
+import './App.styles.scss';
 
 const App = () => {
 
   return (
-    <div>
       <BrowserRouter>
         <Header />
           <Switch>
@@ -18,7 +17,6 @@ const App = () => {
           </Switch>
         <Footer />
       </BrowserRouter>
-    </div>
   );
 }
 

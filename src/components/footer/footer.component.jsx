@@ -5,13 +5,14 @@ import './footer.styles.scss'
 
 const Footer = () => {
  return(
-    <nav>
-      <div className='header'>
+    <div className='footer'>
+      <nav>
         <Link to="/" className="logo">
-         Caleb's Recipes<span>.</span>
+          Caleb's Recipes<span>.</span>
         </Link>    
-      </div>
-    </nav>
+      </nav>
+    </div>
+
   )
 }
 
