@@ -63,6 +63,12 @@ class SpotifyModule extends React.Component {
     })
   }
 
+  recommendationWithSeed = async () => {
+    const { selectedSeeds } = this.state
+    const recommendation = await SpotifyFunctions.getRecommendations(selectedSeeds);
+
+  }
+
   render() {
     const { userTracks, userTracksPageRef, selectedSeeds } = { ...this.state }
     console.log(this.state)
@@ -76,7 +82,7 @@ class SpotifyModule extends React.Component {
             <SeedContainer seeds={selectedSeeds}></SeedContainer>
             : null}
           <Container>
-            
+
             {userTracks ?
               <SelectContainer
                 userTracks={userTracks}
@@ -87,7 +93,9 @@ class SpotifyModule extends React.Component {
               : null}
 
             {selectedSeeds.length ?
-              <Button>
+              <Button
+                onClick={() => this.recommendationWithSeed()}
+              >
                 Generate Songs
               </Button>
               : null}

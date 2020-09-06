@@ -66,12 +66,25 @@ export async function getUserInformation() {
 export async function getMyTopTracks(offset) {
 
   const options = { time_range: 'long_term', limit: 10 + offset, offset: offset }
-  console.log(options)
   try {
     const savedTracks = await spotifyApi.getMyTopTracks(options)
     return savedTracks
   }
   catch (err) {
     console.error('Error getting users saved track information', err);
+  }
+}
+
+
+export async function getRecommendations(seeds) {
+
+  const filterSeeds = seeds.map(value => value.id);
+  const options = { seed_tracks: filterSeeds }
+
+  try {
+    const savedTracks = await spotifyApi.getRecommendations(options)
+    return savedTracks
+  } catch (err) {
+    console.log('Error getting recommendations from seeds', err)
   }
 }
