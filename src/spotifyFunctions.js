@@ -12,7 +12,8 @@ export function redirectUrlToSpotifyForLogin(){
     "user-library-modify",
     "playlist-read-private",
     "playlist-modify-public",
-    "playlist-modify-private"
+    "playlist-modify-private",
+    "user-top-read"
   ];
     
     return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
@@ -50,6 +51,7 @@ export function setAccessToken(accessToken) {
   spotifyApi.setAccessToken(accessToken);
 }
 
+// Calls API, gets authorized user's personal information
 export async function getUserInformation() {
     try {
       const userInformation = await spotifyApi.getMe()
@@ -60,12 +62,13 @@ export async function getUserInformation() {
     }
 }
 
-export async function getMySavedTracks(offset) {
+// Calls API, gets authorized user's saved tracks
+export async function getMyTopTracks(offset) {
   
-  const options = {limit: 20, offset: offset}
-  
+  const options = {time_range:'long_term' , limit: 10, offset: offset}
+    console.log(options)
   try {
-    const savedTracks = await spotifyApi.getMySavedTracks(options)
+    const savedTracks = await spotifyApi.getMyTopTracks(options)
     return savedTracks
   }
   catch(err) {
