@@ -1,14 +1,12 @@
 
 import React from 'react';
-import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
-import ListGroup from 'react-bootstrap/ListGroup'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button';
 
 import SeedContainer from '../seedcontainer/seedcontainer.component'
-import TrackCard from '../trackcard/trackcard.component';
+import SelectContainer from '../selectContainer/selectcontainer.component'
 
 import './spotifymodule.styles.scss'
 
@@ -58,7 +56,7 @@ class SpotifyModule extends React.Component {
     const { selectedSeeds } = this.state
     const index = selectedSeeds.map(e => e.id).indexOf(id)
 
-    index != -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ id: id, url: albumURL })
+    index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ id: id, url: albumURL })
 
     this.setState({
       selectedSeeds: selectedSeeds
@@ -78,37 +76,21 @@ class SpotifyModule extends React.Component {
             <SeedContainer seeds={selectedSeeds}></SeedContainer>
             : null}
           <Container>
-            <Card className="favorite-card">
-              <Card.Body>
-                <ListGroup>
-                  {userTracks ?
-                    <div>
-                      {userTracks.items.map((element) => (
-                        <TrackCard
-                          key={element.id}
-                          select={this.isSelected}
-                          track={element}>
-                        </TrackCard>
-                      ))}
-                    </div>
-                    : null}
-                </ListGroup>
-              </Card.Body>
-            </Card>
-            <div className="button-group">
-              <Button
-                onClick={() => this.getOtherTracks(false)}
-                disabled={userTracksPageRef ? false : true}
-              > Previous
+            
+            {userTracks ?
+              <SelectContainer
+                userTracks={userTracks}
+                select={this.isSelected}
+                getOtherTracks={this.getOtherTracks}
+                userTracksPageRef={userTracksPageRef}
+              ></SelectContainer>
+              : null}
+
+            {selectedSeeds.length ?
+              <Button>
+                Generate Songs
               </Button>
-              <Button
-                onClick={() => this.getOtherTracks(true)}
-                disabled={userTracksPageRef === 40 ? true : false}
-              >Next</Button>
-            </div>
-            <Button>
-              Generate Songs
-            </Button>
+              : null}
           </Container>
         </Col>
       </Row>

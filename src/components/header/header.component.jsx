@@ -9,7 +9,7 @@ const Header = () => {
       <nav>
         <div className='header-options'>
           <Link to="/" className="logo">
-            Caleb's Recipes<span>.</span>
+            Spotify Dashboard<span>.</span>
           </Link>
           <div className='options'>
             <Link className='option' to='/sign-in'>

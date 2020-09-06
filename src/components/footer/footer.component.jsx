@@ -8,11 +8,10 @@ const Footer = () => {
     <div className='footer'>
       <nav>
         <Link to="/" className="logo">
-          Caleb's Recipes<span>.</span>
+          Spotify Dashboard<span>.</span>
         </Link>
       </nav>
     </div>
-
   )
 }
 
