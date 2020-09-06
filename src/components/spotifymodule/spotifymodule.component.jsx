@@ -14,6 +14,7 @@ import './spotifymodule.styles.scss'
 import * as SpotifyFunctions from '../../spotifyFunctions'
 
 const moduleBuildState = () => ({
+  userInformation: null,
   userTracks: null,
   userTracksPageRef: 0,
   selectedSeeds: []
@@ -28,12 +29,12 @@ class SpotifyModule extends React.Component {
 
   async componentDidMount() {
     await SpotifyFunctions.setAccessToken(this.props.accessToken);
-    const playlists = await SpotifyFunctions.getUserInformation();
-    const userTracks = await SpotifyFunctions.getMySavedTracks(this.state.userTracksPageRef);
+    const fetchedUserInfo = await SpotifyFunctions.getUserInformation();
+    const fetchedUserTracks = await SpotifyFunctions.getMySavedTracks(this.state.userTracksPageRef);
     
     this.setState({
-      playlists: playlists,
-      userTracks: userTracks
+      userInformation: fetchedUserInfo,
+      userTracks: fetchedUserTracks
     });
   }
 
