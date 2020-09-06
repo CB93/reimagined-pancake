@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import ListOption from '../listoption/listoption.component';
 
-const SelectContainer = (props) => {
+const SelectionContainer = (props) => {
 
   return (
     <div>
@@ -41,4 +41,4 @@ const SelectContainer = (props) => {
   )
 }
 
-export default SelectContainer
+export default SelectionContainer

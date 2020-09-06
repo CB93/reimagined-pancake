@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 import RecommendationContainer from '../recommendationcontainer/recommendationcontainer.component';
 import SeedContainer from '../seedcontainer/seedcontainer.component';
-import SelectContainer from '../selectcontainer/selectcontainer.component';
+import SelectionContainer from '../selectioncontainer/selectioncontainer.component';
 
 import './spotifymodule.styles.scss'
 
@@ -88,12 +88,12 @@ class SpotifyModule extends React.Component {
         <Col xs={3} m={3} lg={3} xl={3}>
           <Container>
             {userTracks ?
-              <SelectContainer
+              <SelectionContainer
                 userTracks={userTracks}
                 select={this.isSelected}
                 getOtherTracks={this.getOtherTracks}
                 userTracksPageRef={userTracksPageRef}
-              ></SelectContainer>
+              ></SelectionContainer>
               : null}
 
             {selectedSeeds.length ?
