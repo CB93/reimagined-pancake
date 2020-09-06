@@ -1,17 +1,17 @@
 
 import React from 'react';
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-import SeedContainer from '../seedcontainer/seedcontainer.component'
-import SelectContainer from '../selectcontainer/selectcontainer.component'
+import RecommendationContainer from '../recommendationcontainer/recommendationcontainer.component';
+import SeedContainer from '../seedcontainer/seedcontainer.component';
+// import SelectContainer from '../selectcontainer/selectcontainer.component';
 
 import './spotifymodule.styles.scss'
 
 import * as SpotifyFunctions from '../../spotifyFunctions'
-import RecommendationContainer from '../recommendationcontainer/recommendationcontainer.component';
 
 const moduleBuildState = () => ({
   userInformation: null,
@@ -87,14 +87,14 @@ class SpotifyModule extends React.Component {
       <Row>
         <Col xs={3} m={3} lg={3} xl={3}>
           <Container>
-            {userTracks ?
+            {/* {userTracks ?
               <SelectContainer
                 userTracks={userTracks}
                 select={this.isSelected}
                 getOtherTracks={this.getOtherTracks}
                 userTracksPageRef={userTracksPageRef}
               ></SelectContainer>
-              : null}
+              : null} */}
 
             {selectedSeeds.length ?
               <Button
