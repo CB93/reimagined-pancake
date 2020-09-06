@@ -1,4 +1,5 @@
 //spotifyFunctions.js
+require('dotenv').config()
 
 import Spotify from 'spotify-web-api-js';
 
@@ -6,7 +7,7 @@ const spotifyApi = new Spotify();
 
 export function redirectUrlToSpotifyForLogin(){
   const CLIENT_ID = '3acfac59619b4af3b219a4ff0c1547fa';
-  const REDIRECT_URI = 'http://localhost:3000';
+  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI ? process.env.REACT_APP_REDIRECT_URI : 'http://localhost:3000';
 
   const scopes = [
     "user-library-read",
