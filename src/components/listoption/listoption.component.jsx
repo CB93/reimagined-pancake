@@ -4,9 +4,9 @@ import Figure from 'react-bootstrap/Figure'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import './trackcard.styles.scss'
+import './listoption.styles.scss'
 
-const TrackCard = (props) => {
+const ListOption = (props) => {
   return (
     <ListGroup.Item onClick={() => props.select(props.track.id, props.track.album.images[1].url)}>
       <Row>
@@ -29,4 +29,4 @@ const TrackCard = (props) => {
   );
 }
 
-export default TrackCard
+export default ListOption

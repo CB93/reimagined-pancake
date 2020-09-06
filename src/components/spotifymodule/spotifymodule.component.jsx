@@ -6,17 +6,19 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button';
 
 import SeedContainer from '../seedcontainer/seedcontainer.component'
-import SelectContainer from '../selectContainer/selectcontainer.component'
+import SelectContainer from '../selectcontainer/selectcontainer.component'
 
 import './spotifymodule.styles.scss'
 
 import * as SpotifyFunctions from '../../spotifyFunctions'
+import RecommendationContainer from '../recommendationcontainer/recommendationcontainer.component';
 
 const moduleBuildState = () => ({
   userInformation: null,
   userTracks: null,
   userTracksPageRef: 0,
-  selectedSeeds: []
+  selectedSeeds: [],
+  recommendedList: []
 });
 
 class SpotifyModule extends React.Component {
@@ -54,9 +56,15 @@ class SpotifyModule extends React.Component {
   // Selected Seeds for generated playlist / track
   isSelected = (id, albumURL) => {
     const { selectedSeeds } = this.state
+    // Returns -1 if element does not exist
     const index = selectedSeeds.map(e => e.id).indexOf(id)
 
-    index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ id: id, url: albumURL })
+    // If there is 5 tracks in the array and they are trying to insert another track
+    if (selectedSeeds.length === 5 && index === -1) {
+      alert("There is a maximum of 5 tracks allowed")
+    } else {
+      index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ id: id, url: albumURL })
+    }
 
     this.setState({
       selectedSeeds: selectedSeeds
@@ -65,20 +73,20 @@ class SpotifyModule extends React.Component {
 
   recommendationWithSeed = async () => {
     const { selectedSeeds } = this.state
-    const recommendation = await SpotifyFunctions.getRecommendations(selectedSeeds);
-
+    const recommendations = await SpotifyFunctions.getRecommendations(selectedSeeds);
+    
+    this.setState({ 
+      recommendedList : recommendations
+    })
   }
 
   render() {
-    const { userTracks, userTracksPageRef, selectedSeeds } = { ...this.state }
+    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
     console.log(this.state)
     return (
       <Row>
-
         <Col xs={3} m={3} lg={3} xl={3}>
-
           <Container>
-
             {userTracks ?
               <SelectContainer
                 userTracks={userTracks}
@@ -101,6 +109,9 @@ class SpotifyModule extends React.Component {
           {selectedSeeds.length ?
             <SeedContainer seeds={selectedSeeds}></SeedContainer>
             : null}
+          {recommendedList.tracks ?
+          <RecommendationContainer></RecommendationContainer>
+          : null}
         </Col>
       </Row>
     )

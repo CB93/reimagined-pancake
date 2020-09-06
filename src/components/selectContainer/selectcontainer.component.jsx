@@ -4,7 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button';
 
 
-import TrackCard from '../trackcard/trackcard.component';
+import ListOption from '../listoption/listoption.component';
 
 const SelectContainer = (props) => {
 
@@ -16,11 +16,11 @@ const SelectContainer = (props) => {
             {props.userTracks ?
               <div>
                 {props.userTracks.items.map((element) => (
-                  <TrackCard
+                  <ListOption
                     key={element.id}
                     select={props.select}
                     track={element}>
-                  </TrackCard>
+                  </ListOption>
                 ))}
               </div>
               : null}

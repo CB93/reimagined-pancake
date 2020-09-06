@@ -73,15 +73,16 @@ export async function getMyTopTracks(offset) {
   }
 }
 
-// Call API, gets recommendations based on users seeds
+// Call API, gets rsecommendations based on users seeds
 export async function getRecommendations(seeds) {
 
   const filterSeeds = seeds.map(value => value.id);
   const options = { seed_tracks: filterSeeds }
 
   try {
-    const savedTracks = await spotifyApi.getRecommendations(options)
-    return savedTracks
+    const recommendedTracks = await spotifyApi.getRecommendations(options)
+    console.log(recommendedTracks)
+    return recommendedTracks
   } catch (err) {
     console.log('Error getting recommendations from seeds', err)
   }
