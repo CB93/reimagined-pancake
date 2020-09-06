@@ -56,8 +56,7 @@ export async function getUserInformation() {
   try {
     const userInformation = await spotifyApi.getMe()
     return userInformation
-  }
-  catch (err) {
+  } catch (err) {
     console.error('Error getting users account information', err);
   }
 }
@@ -69,13 +68,12 @@ export async function getMyTopTracks(offset) {
   try {
     const savedTracks = await spotifyApi.getMyTopTracks(options)
     return savedTracks
-  }
-  catch (err) {
+  } catch (err) {
     console.error('Error getting users saved track information', err);
   }
 }
 
-
+// Call API, gets recommendations based on users seeds
 export async function getRecommendations(seeds) {
 
   const filterSeeds = seeds.map(value => value.id);

@@ -74,13 +74,9 @@ class SpotifyModule extends React.Component {
     console.log(this.state)
     return (
       <Row>
-        <Col>
 
-        </Col>
         <Col xs={3} m={3} lg={3} xl={3}>
-          {selectedSeeds.length ?
-            <SeedContainer seeds={selectedSeeds}></SeedContainer>
-            : null}
+
           <Container>
 
             {userTracks ?
@@ -100,6 +96,11 @@ class SpotifyModule extends React.Component {
               </Button>
               : null}
           </Container>
+        </Col>
+        <Col>
+          {selectedSeeds.length ?
+            <SeedContainer seeds={selectedSeeds}></SeedContainer>
+            : null}
         </Col>
       </Row>
     )
