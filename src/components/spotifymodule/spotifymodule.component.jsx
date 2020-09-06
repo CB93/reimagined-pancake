@@ -1,8 +1,16 @@
 
 import React from 'react';
 import Card from 'react-bootstrap/Card'
-
+import ListGroup from 'react-bootstrap/ListGroup'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 import TrackCard from '../trackcard/trackcard.component';
+
+import './spotifymodule.styles.scss'
+
+
+
 
 import * as SpotifyFunctions from '../../spotifyFunctions'
 
@@ -34,20 +42,30 @@ render() {
     const { userTracks } = {...this.state}
     console.log(userTracks)
     return (
-      <Card>
-          <Card.Body>
-        <div>
-          {userTracks ?
-            <div>
-              {userTracks.items.map((person, index) => (
-                 <TrackCard></TrackCard>
-                 ))}
-            </div>
-          : null }
-        </div>
+      <Row>
+        <Col>
+
+      </Col>
+      <Col xs={3} m={3} lg={3} xl={3}>
+
+      <Container>
+      <Card className="favorite-card">
+        <Card.Body>
+          <ListGroup>
+            {userTracks ?
+              <div>
+                {userTracks.items.map((track, index) => (
+                  <TrackCard track={track.track}></TrackCard>
+                  ))}
+              </div>
+            : null }
+          </ListGroup>
         </Card.Body>
-        </Card>
-      
+      </Card>
+      </Container>
+      </Col>
+
+      </Row>
     )
   }
 }

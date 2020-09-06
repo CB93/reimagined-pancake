@@ -1,20 +1,33 @@
 import React from 'react';
+import ListGroup from 'react-bootstrap/ListGroup'
+import Figure from 'react-bootstrap/Figure'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-import Card from 'react-bootstrap/Card'
+import './trackcard.styles.scss'
 
-export default function MediaControlCard() {
-
-
+const TrackCard = ( props ) => {
+  console.log (props)
   return (
-    <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src="holder.js/100px180" />
-  <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text>
-  </Card.Body>
-</Card>
+    <ListGroup.Item>
+      <Row>
+        <Col xs={8} m={8} lg={8} xl={8}>
+          <p class="artist-name">{props.track.artists[0].name}</p>
+          <p>{props.track.name}</p>
+        </Col>
+        <Col>
+        <Figure>
+          <Figure.Image
+            width={70}
+            height={70}
+            alt="70x70"
+            src={props.track.album.images[1].url}
+          />
+        </Figure>
+        </Col>
+      </Row>
+    </ListGroup.Item>
   );
 }
+
+export default TrackCard
