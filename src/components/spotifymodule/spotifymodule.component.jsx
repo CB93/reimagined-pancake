@@ -82,8 +82,7 @@ class SpotifyModule extends React.Component {
   }
 
   addToLibrary = async (musicItem) => {
-    console.log(musicItem)
-    // const addedToLibrary = await SpotifyFunctions.addToLibrary(tracks)
+    const addedToLibrary = await SpotifyFunctions.addToLibrary(musicItem)
   }
 
   render() {
