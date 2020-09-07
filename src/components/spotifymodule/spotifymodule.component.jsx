@@ -4,13 +4,15 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 import CardContainer from '../cardcontainer/cardcontainer.component';
 import SelectionContainer from '../selectioncontainer/selectioncontainer.component';
 
-import './spotifymodule.styles.scss'
+import './spotifymodule.styles.scss';
 
-import * as SpotifyFunctions from '../../spotifyFunctions'
+import * as SpotifyFunctions from '../../spotifyFunctions';
+import * as toastr from '../../toastconfig';
 
 const moduleBuildState = () => ({
   userInformation: null,
@@ -53,14 +55,14 @@ class SpotifyModule extends React.Component {
   }
 
   // Selected Seeds for generated playlist / track
+  // If there is 5 tracks in the array and they are trying to insert another track
   isSelected = (song) => {
     const { selectedSeeds } = this.state
-    // // Returns -1 if element does not exist
+    // Returns -1 if element does not exist
     const index = selectedSeeds.map(e => e.id).indexOf(song.id)
 
-    // // If there is 5 tracks in the array and they are trying to insert another track
     if (selectedSeeds.length === 5 && index === -1) {
-      alert("There is a maximum of 5 tracks allowed")
+      toast.error("Only 5 seeds maximum allowed", toastr.Options)
     } else {
       index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ ...song })
     }
@@ -79,8 +81,9 @@ class SpotifyModule extends React.Component {
     })
   }
 
-  addToLibrary = async (tracks) => {
-    const addedToLibrary = await SpotifyFunctions.addToLibrary(tracks)
+  addToLibrary = async (musicItem) => {
+    console.log(musicItem)
+    // const addedToLibrary = await SpotifyFunctions.addToLibrary(tracks)
   }
 
   render() {
@@ -117,6 +120,7 @@ class SpotifyModule extends React.Component {
             <Container>
               <CardContainer
                 cardcontent={recommendedList.tracks}
+                isRecommendations={this.addToLibrary}
               />
             </Container>
             : null}
