@@ -82,7 +82,7 @@ class SpotifyModule extends React.Component {
 
   render() {
     const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Row>
         <Col xs={3} m={3} lg={3} xl={3}>
@@ -113,7 +113,7 @@ class SpotifyModule extends React.Component {
             : null}
           {recommendedList.tracks ?
             <RecommendationContainer
-              recommendations={recommendedList}
+              recommendations={recommendedList.tracks}
             />
             : null}
         </Col>

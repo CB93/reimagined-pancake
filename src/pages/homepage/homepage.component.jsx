@@ -1,12 +1,11 @@
 import React from 'react'
-
-import Directory from '../../components/directory/directory.component'
+import SpotifyContainer from '../../components/spotifycontainer/spotifycontainer.component';
 
 import './homepage.styles.scss'
 const HomePage = () => (
-  <div className='homepage'>
-    <Directory />
-  </div>
+     <div className='directory-menu'>
+      <SpotifyContainer />
+    </div>
 )
 
 export default HomePage;

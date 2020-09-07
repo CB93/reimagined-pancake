@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 const SeedContainer = (props) => {
   return (
     <Container>
-      <Card className="favorite-card">
+      <Card >
         <Card.Body>
           {props.seeds.map((element) => {
             return (
