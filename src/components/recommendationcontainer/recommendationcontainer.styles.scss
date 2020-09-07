@@ -1,0 +1,12 @@
+.recommendation-container {
+  .card-deck{
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .card {
+    flex: 1 0 15% !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
