@@ -5,8 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-import RecommendationContainer from '../recommendationcontainer/recommendationcontainer.component';
-import SeedContainer from '../seedcontainer/seedcontainer.component';
+import CardContainer from '../cardcontainer/cardcontainer.component';
 import SelectionContainer from '../selectioncontainer/selectioncontainer.component';
 
 import './spotifymodule.styles.scss'
@@ -54,16 +53,17 @@ class SpotifyModule extends React.Component {
   }
 
   // Selected Seeds for generated playlist / track
-  isSelected = (id, albumURL) => {
+  isSelected = (song) => {
+    console.log(song)
     const { selectedSeeds } = this.state
-    // Returns -1 if element does not exist
-    const index = selectedSeeds.map(e => e.id).indexOf(id)
+    // // Returns -1 if element does not exist
+    const index = selectedSeeds.map(e => e.id).indexOf(song.id)
 
-    // If there is 5 tracks in the array and they are trying to insert another track
+    // // If there is 5 tracks in the array and they are trying to insert another track
     if (selectedSeeds.length === 5 && index === -1) {
       alert("There is a maximum of 5 tracks allowed")
     } else {
-      index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ id: id, url: albumURL })
+      index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ ...song })
     }
 
     this.setState({
@@ -107,13 +107,13 @@ class SpotifyModule extends React.Component {
         </Col>
         <Col>
           {selectedSeeds.length ?
-            <SeedContainer
-              seeds={selectedSeeds}
+            <CardContainer
+              cardcontent={selectedSeeds}
             />
             : null}
           {recommendedList.tracks ?
-            <RecommendationContainer
-              recommendations={recommendedList.tracks}
+            <CardContainer
+              cardcontent={recommendedList.tracks}
             />
             : null}
         </Col>

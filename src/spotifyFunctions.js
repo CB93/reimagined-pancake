@@ -75,7 +75,7 @@ export async function getMyTopTracks(offset) {
 
 // Call API, gets rsecommendations based on users seeds
 export async function getRecommendations(seeds) {
-
+  console.log(seeds)
   const filterSeeds = seeds.map(value => value.id);
   const options = { seed_tracks: filterSeeds }
 
