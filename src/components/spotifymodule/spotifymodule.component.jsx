@@ -54,7 +54,6 @@ class SpotifyModule extends React.Component {
 
   // Selected Seeds for generated playlist / track
   isSelected = (song) => {
-    console.log(song)
     const { selectedSeeds } = this.state
     // // Returns -1 if element does not exist
     const index = selectedSeeds.map(e => e.id).indexOf(song.id)
@@ -80,6 +79,10 @@ class SpotifyModule extends React.Component {
     })
   }
 
+  addToLibrary = async (tracks) => {
+    const addedToLibrary = await SpotifyFunctions.addToLibrary(tracks)
+  }
+
   render() {
     const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
     // console.log(this.state)
@@ -95,26 +98,27 @@ class SpotifyModule extends React.Component {
                 userTracksPageRef={userTracksPageRef}
               />
               : null}
-
-            {selectedSeeds.length ?
-              <Button
-                onClick={() => this.recommendationWithSeed()}
-              >
-                Generate Songs
-              </Button>
-              : null}
           </Container>
         </Col>
         <Col>
           {selectedSeeds.length ?
-            <CardContainer
-              cardcontent={selectedSeeds}
-            />
+            <Container>
+              <CardContainer
+                cardcontent={selectedSeeds}
+              />    
+              <Button
+                className="generate-seeds-btn"
+                onClick={() => this.recommendationWithSeed()}
+              >Generate Songs
+            </Button>
+            </Container>
             : null}
           {recommendedList.tracks ?
-            <CardContainer
-              cardcontent={recommendedList.tracks}
-            />
+            <Container>
+              <CardContainer
+                cardcontent={recommendedList.tracks}
+              />
+            </Container>
             : null}
         </Col>
       </Row>

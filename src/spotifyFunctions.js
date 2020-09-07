@@ -26,7 +26,7 @@ export function redirectUrlToSpotifyForLogin() {
 export function checkUrlForSpotifyAccessToken() {
   const params = getHashParams();
   const accessToken = params.access_token
-  console.log(params)
+  // console.log(params)
   if (!accessToken) {
     return false
   } else {
@@ -75,15 +75,19 @@ export async function getMyTopTracks(offset) {
 
 // Call API, gets rsecommendations based on users seeds
 export async function getRecommendations(seeds) {
-  console.log(seeds)
+  // console.log(seeds)
   const filterSeeds = seeds.map(value => value.id);
   const options = { seed_tracks: filterSeeds }
 
   try {
     const recommendedTracks = await spotifyApi.getRecommendations(options)
-    console.log(recommendedTracks)
+    // console.log(recommendedTracks)
     return recommendedTracks
   } catch (err) {
     console.log('Error getting recommendations from seeds', err)
   }
+}
+
+export async function addToLibrary(tracks) {
+  spotifyApi.addToMySavedTracks(tracks)
 }

@@ -5,13 +5,16 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import './displaycard.styles.scss'
 
 const DisplayCard = (props) => {
-  console.log(props.musicItems[0])
+  console.log(props)
   return (
     <div className="recommendation-container">
       <CardDeck>
         {props.musicItems.map(element => {
           return (
-            <Card className="card-content">
+            <Card 
+              key={element.id}
+              className="card-content"
+            >
               <Card.Img 
                 variant="top"   
                 width={100}
