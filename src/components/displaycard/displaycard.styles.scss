@@ -1,4 +1,4 @@
-.recommendation-container {
+.carddeck-container {
   .card-deck{
     display: flex !important;
     flex-wrap: wrap !important;
@@ -7,9 +7,21 @@
   }
   
   .card {
+    .card-body {
+      padding: 1rem;
+    }
     flex: 1 0 15% !important;
     margin-top: 10px;
     margin-bottom: 10px;
     max-width: 170px;
+
+    .item-name {
+      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .card-text {
+      font-size: 12px;
+    }
   }
 }

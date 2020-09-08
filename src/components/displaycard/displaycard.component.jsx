@@ -9,7 +9,7 @@ import './displaycard.styles.scss'
 const DisplayCard = (props) => {
   // console.log(props)
   return (
-    <div className="recommendation-container">
+    <div className="carddeck-container">
       <CardDeck>
         {props.musicItems.map(musicItem => {
           return (
@@ -24,8 +24,8 @@ const DisplayCard = (props) => {
                 src={musicItem.album.images[1].url}
               />
               <Card.Body>
-                <Card.Title>{musicItem.artists[0].name}</Card.Title>
-                <Card.Text>{musicItem.name}</Card.Text>
+                <Card.Title className="item-name">{musicItem.artists[0].name}</Card.Title>
+                <Card.Text ClassName="subname">{musicItem.name}</Card.Text>
               </Card.Body>
               {props.isRecommendations ?
                 <div>
