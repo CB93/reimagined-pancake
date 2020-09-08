@@ -90,10 +90,15 @@ export async function getRecommendations(seeds) {
 }
 
 export async function addToLibrary(musicItem) {
-  console.log(musicItem)
   try {
-    spotifyApi.addToMySavedTracks([musicItem.id])
-    return toast.success(`${musicItem.name} - was added to your library`, toastr.defaultOptions)
+    const alreadyHas = await spotifyApi.containsMySavedTracks([musicItem.id])
+    
+    if (alreadyHas[0]) {
+      return toast.error(`Oops, ${musicItem.name} is already in your library`, toastr.defaultOptions)
+    } else {
+      await spotifyApi.addToMySavedTracks([musicItem.id])
+      return toast.success(`${musicItem.name} - was added to your library`, toastr.defaultOptions)
+    }
 
   } catch (err) {
     return toast.error(`${err}`, toastr.defaultOptions)

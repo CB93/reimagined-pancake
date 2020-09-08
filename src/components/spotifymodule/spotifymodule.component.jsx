@@ -21,7 +21,6 @@ const moduleBuildState = () => ({
   userTracksPageRef: 0,
   selectedSeeds: [],
   recommendedList: [],
-  userInformation: null,
   userTracks: null
 });
 
@@ -38,12 +37,8 @@ class SpotifyModule extends React.Component {
 
   // API calls to Spotify API onload
   async componentDidMount() {
-    await SpotifyFunctions.setAccessToken(this.props.accessToken);
-    const fetchedUserInfo = await SpotifyFunctions.getUserInformation();
     const fetchedUserTracks = await SpotifyFunctions.getMyTopTracks(this.state.userTracksPageRef);
-    console.log(fetchedUserInfo)
     this.setState({
-      userInformation: fetchedUserInfo,
       userTracks: fetchedUserTracks
     });
   }
@@ -121,14 +116,15 @@ class SpotifyModule extends React.Component {
 
 
   render() {
-    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList, userInformation } = { ...this.state }
+    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
+    const { userInformation } = this.props
     console.log(userInformation)
     return (
 
       <Row>
         <Col xs={3} m={3} lg={3} xl={3}>
           <Container>
-          <h4>Top 50 Tracks</h4>
+            <h4>Top 50 Tracks</h4>
 
             {userTracks ?
               <div>
@@ -149,7 +145,7 @@ class SpotifyModule extends React.Component {
         </Col>
         <Col>
           <Container>
-          <h4>Seeds</h4>
+            <h4>Seeds</h4>
 
             {selectedSeeds.length ?
               <div>
@@ -157,21 +153,21 @@ class SpotifyModule extends React.Component {
                   cardcontent={selectedSeeds}
                   previewSong={this.previewSong}
                 />
-                <Button 
+                <Button
                   className="generate-seeds-btn badge-pill"
                   onClick={() => this.recommendationWithSeed()}
-                >Generate Songs
+                > {recommendedList.tracks ? 'Generate More Recommendations'
+                  : 'Generate Recommendations'}
             </Button>
               </div>
               : <Jumbotron>
-              <h1>Hello, world!</h1>
-              <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-              </p>
-              <p>
-              </p>
-            </Jumbotron>
+                <h1>Hello, {userInformation.display_name}</h1>
+                <p>
+                  This is a simple app, Start by picking a few songs from the left side of your
+                  top tracks. 
+                </p>
+                <p>Click the generate recommendations button after.</p>
+              </Jumbotron>
             }
           </Container>
 
