@@ -6,7 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-
+import Card from 'react-bootstrap/Card'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 import { toast } from 'react-toastify';
 
 import CardContainer from '../cardcontainer/cardcontainer.component';
@@ -41,7 +42,7 @@ class SpotifyModule extends React.Component {
     await SpotifyFunctions.setAccessToken(this.props.accessToken);
     const fetchedUserInfo = await SpotifyFunctions.getUserInformation();
     const fetchedUserTracks = await SpotifyFunctions.getMyTopTracks(this.state.userTracksPageRef);
-
+    console.log(fetchedUserInfo)
     this.setState({
       userInformation: fetchedUserInfo,
       userTracks: fetchedUserTracks
@@ -56,7 +57,7 @@ class SpotifyModule extends React.Component {
       userTracks: fetchedUserTracks,
       userTracksPageRef: 0
     });
-}
+  }
 
   // Gets either the next 20 set of tracks or the previous set of 20 tracks
   // Calls Spotify API function with new track offset
@@ -92,7 +93,7 @@ class SpotifyModule extends React.Component {
   recommendationWithSeed = async () => {
     const { selectedSeeds } = this.state
     const recommendations = await SpotifyFunctions.getRecommendations(selectedSeeds);
-    this.setState({ recommendedList: recommendations})
+    this.setState({ recommendedList: recommendations })
   }
 
   // Button listener to add song to library
@@ -104,11 +105,11 @@ class SpotifyModule extends React.Component {
 
     if (musicItem.preview_url) {
       toast.dismiss();
-      this.audioPlayer.src = musicItem.preview_url; 
+      this.audioPlayer.src = musicItem.preview_url;
       this.audioPlayer.play()
       this.audioPlayer.onloadeddata = (event) => {
         toastr.previewOptions.autoClose = event.srcElement.duration * 1000
-        toast.success(`Now Playing: ${musicItem.name}` , toastr.previewOptions)
+        toast.success(`Now Playing: ${musicItem.name}`, toastr.previewOptions)
       }
     } else {
       this.audioPlayer.pause()
@@ -128,12 +129,14 @@ class SpotifyModule extends React.Component {
       <Row>
         <Col xs={3} m={3} lg={3} xl={3}>
           <Container>
+          <h4>Top 50 Tracks</h4>
+
             {userTracks ?
               <div>
                 <Tabs defaultActiveKey={'long_term'} transition={false} onSelect={this.getMyTopTracks}>
-                  <Tab eventKey={'long_term'} title="All-time"/>
-                  <Tab eventKey={'medium_term'} title="6 Months"/>
-                  <Tab eventKey={'short_term'} title="4 Weeks"/>
+                  <Tab eventKey={'long_term'} title="All-time" />
+                  <Tab eventKey={'medium_term'} title="6 Months" />
+                  <Tab eventKey={'short_term'} title="4 Weeks" />
                 </Tabs>
                 <SelectionContainer
                   userTracks={userTracks}
@@ -142,23 +145,37 @@ class SpotifyModule extends React.Component {
                   userTracksPageRef={userTracksPageRef}
                 />
               </div>
-            : null}
+              : null}
           </Container>
         </Col>
         <Col>
-          {selectedSeeds.length ?
-            <Container>
-              <CardContainer
-                cardcontent={selectedSeeds}
-                previewSong={this.previewSong}
-              />
-              <Button
-                className="generate-seeds-btn"
-                onClick={() => this.recommendationWithSeed()}
-              >Generate Songs
+          <Container>
+          <h4>Seeds</h4>
+
+            {selectedSeeds.length ?
+              <div>
+                <CardContainer
+                  cardcontent={selectedSeeds}
+                  previewSong={this.previewSong}
+                />
+                <Button
+                  className="generate-seeds-btn"
+                  onClick={() => this.recommendationWithSeed()}
+                >Generate Songs
             </Button>
-            </Container>
-            : null}
+              </div>
+              : <Jumbotron>
+              <h1>Hello, world!</h1>
+              <p>
+                This is a simple hero unit, a simple jumbotron-style component for calling
+                extra attention to featured content or information.
+              </p>
+              <p>
+              </p>
+            </Jumbotron>
+            }
+          </Container>
+
           {recommendedList.tracks ?
             <Container>
               <CardContainer
