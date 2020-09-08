@@ -13,12 +13,12 @@ const App = () => {
 
   return (
     <div>
-      <ToastContainer/>
-        <BrowserRouter>
+      <ToastContainer />
+      <BrowserRouter>
         <Header />
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-          </Switch>
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+        </Switch>
       </BrowserRouter>
     </div>
   );

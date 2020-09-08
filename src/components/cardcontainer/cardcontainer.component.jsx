@@ -7,11 +7,11 @@ const CardContainer = (props) => {
   return (
     <Card>
       <Card.Body>
-        <DisplayCard 
+        <DisplayCard
           previewSong={props.previewSong}
           musicItems={props.cardcontent}
           isRecommendations={props.isRecommendations}
-        /> 
+        />
       </Card.Body>
     </Card>
   )

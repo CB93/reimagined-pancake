@@ -7,11 +7,11 @@ const Header = () => {
   return (
     <div className='header'>
       <nav>
-         <div className='header-options'>
+        <div className='header-options'>
           <Link to="/" className="logo">
             Spotify Dashboard<span>.</span>
           </Link>
-         </div>
+        </div>
       </nav>
     </div>
   )

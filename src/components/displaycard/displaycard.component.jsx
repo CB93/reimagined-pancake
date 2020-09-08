@@ -29,11 +29,11 @@ const DisplayCard = (props) => {
                 <Card.Text className="subname">{musicItem.name}</Card.Text>
               </Card.Body>
               <div>
-                {props.isRecommendations 
-                  ? <Button variant="light" onClick={() => props.isRecommendations(musicItem)}><BsHeartFill  color={'red'} /></Button>
+                {props.isRecommendations
+                  ? <Button variant="light" onClick={() => props.isRecommendations(musicItem)}><BsHeartFill color={'red'} /></Button>
                   : null
                 }
-                <Button variant="light" onClick={() => props.previewSong(musicItem)}><BsPlayFill size={'1.5em'}/></Button>
+                <Button variant="light" onClick={() => props.previewSong(musicItem)}><BsPlayFill size={'1.5em'} /></Button>
               </div>
 
             </Card>
