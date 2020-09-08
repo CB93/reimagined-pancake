@@ -64,8 +64,10 @@ export async function getUserInformation() {
 }
 
 // Calls API, gets authorized user's saved tracks
-export async function getMyTopTracks(offset) {
-  const options = { time_range: 'long_term', limit: 10 + offset, offset: offset }
+export async function getMyTopTracks(offset, duration) {
+  const time_range = duration ? duration : 'long_term'
+  const options = { time_range: time_range, limit: 10 + offset, offset: offset }
+  console.log(options)
   try {
     const savedTracks = await spotifyApi.getMyTopTracks(options)
     return savedTracks
@@ -90,7 +92,7 @@ export async function getRecommendations(seeds) {
 export async function addToLibrary(musicItem) {
   console.log(musicItem)
   try {
-    let res = await spotifyApi.addToMySavedTracks([musicItem.id])
+    spotifyApi.addToMySavedTracks([musicItem.id])
     return toast.success(`${musicItem.name} - was added to your library`, toastr.defaultOptions)
 
   } catch (err) {

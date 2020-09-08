@@ -4,6 +4,9 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+
 import { toast } from 'react-toastify';
 
 import CardContainer from '../cardcontainer/cardcontainer.component';
@@ -44,6 +47,16 @@ class SpotifyModule extends React.Component {
       userTracks: fetchedUserTracks
     });
   }
+
+
+  // Calls Spotify API, causes selection container to render with track duration
+  getMyTopTracks = async (key) => {
+    const fetchedUserTracks = await SpotifyFunctions.getMyTopTracks(0, key);
+    this.setState({
+      userTracks: fetchedUserTracks,
+      userTracksPageRef: 0
+    });
+}
 
   // Gets either the next 20 set of tracks or the previous set of 20 tracks
   // Calls Spotify API function with new track offset
@@ -94,7 +107,8 @@ class SpotifyModule extends React.Component {
       this.audioPlayer.src = musicItem.preview_url; 
       this.audioPlayer.play()
       this.audioPlayer.onloadeddata = (event) => {
-        toast.success(`Now Playing: ${musicItem.name}` , {autoClose : event.srcElement.duration * 1000})
+        toastr.previewOptions.autoClose = event.srcElement.duration * 1000
+        toast.success(`Now Playing: ${musicItem.name}` , toastr.previewOptions)
       }
     } else {
       this.audioPlayer.pause()
@@ -104,10 +118,10 @@ class SpotifyModule extends React.Component {
     toast.clearWaitingQueue();
   }
 
- 
+
 
   render() {
-    const { userTracks, playing, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
+    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
 
     return (
 
@@ -115,13 +129,20 @@ class SpotifyModule extends React.Component {
         <Col xs={3} m={3} lg={3} xl={3}>
           <Container>
             {userTracks ?
-              <SelectionContainer
-                userTracks={userTracks}
-                select={this.isSelected}
-                getOtherTracks={this.getOtherTracks}
-                userTracksPageRef={userTracksPageRef}
-              />
-              : null}
+              <div>
+                <Tabs defaultActiveKey={'long_term'} transition={false} onSelect={this.getMyTopTracks}>
+                  <Tab eventKey={'long_term'} title="All-time"/>
+                  <Tab eventKey={'medium_term'} title="6 Months"/>
+                  <Tab eventKey={'short_term'} title="4 Weeks"/>
+                </Tabs>
+                <SelectionContainer
+                  userTracks={userTracks}
+                  select={this.isSelected}
+                  getOtherTracks={this.getOtherTracks}
+                  userTracksPageRef={userTracksPageRef}
+                />
+              </div>
+            : null}
           </Container>
         </Col>
         <Col>
