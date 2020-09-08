@@ -1,3 +1,3 @@
-export const Options = {
-  hideProgressBar: true
+export const defaultOptions = {
+  hideProgressBar: true,
 }

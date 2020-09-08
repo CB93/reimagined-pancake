@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import { BsHeartFill, BsPlayFill } from "react-icons/bs";
 
 import CardDeck from 'react-bootstrap/CardDeck'
 
@@ -25,15 +26,16 @@ const DisplayCard = (props) => {
               />
               <Card.Body>
                 <Card.Title className="item-name">{musicItem.artists[0].name}</Card.Title>
-                <Card.Text ClassName="subname">{musicItem.name}</Card.Text>
+                <Card.Text className="subname">{musicItem.name}</Card.Text>
               </Card.Body>
-              {props.isRecommendations ?
-                <div>
-                  <Button variant="light" onClick={() => props.isRecommendations(musicItem)}>Add to library</Button>
-                </div>
-                :
-                null
-              }
+              <div>
+                {props.isRecommendations 
+                  ? <Button variant="light" onClick={() => props.isRecommendations(musicItem)}><BsHeartFill  color={'red'} /></Button>
+                  : null
+                }
+                <Button variant="light" onClick={() => props.previewSong(musicItem)}><BsPlayFill size={'1.5em'}/></Button>
+              </div>
+
             </Card>
           )
         })}

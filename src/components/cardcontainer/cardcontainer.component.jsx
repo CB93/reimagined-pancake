@@ -8,6 +8,7 @@ const CardContainer = (props) => {
     <Card>
       <Card.Body>
         <DisplayCard 
+          previewSong={props.previewSong}
           musicItems={props.cardcontent}
           isRecommendations={props.isRecommendations}
         /> 

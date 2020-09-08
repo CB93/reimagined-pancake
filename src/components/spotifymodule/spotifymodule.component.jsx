@@ -15,14 +15,18 @@ import * as SpotifyFunctions from '../../spotifyFunctions';
 import * as toastr from '../../toastconfig';
 
 const moduleBuildState = () => ({
-  userInformation: null,
-  userTracks: null,
   userTracksPageRef: 0,
   selectedSeeds: [],
-  recommendedList: []
+  recommendedList: [],
+  userInformation: null,
+  userTracks: null
 });
 
+
+
 class SpotifyModule extends React.Component {
+  // Audio constructor for browers native audio
+  audioPlayer = new Audio()
 
   constructor(props) {
     super(props)
@@ -58,11 +62,10 @@ class SpotifyModule extends React.Component {
   // If there is 5 tracks in the array and they are trying to insert another track
   isSelected = (song) => {
     const { selectedSeeds } = this.state
-    // Returns -1 if element does not exist
-    const index = selectedSeeds.map(e => e.id).indexOf(song.id)
+    const index = selectedSeeds.map(e => e.id).indexOf(song.id) // Returns -1 if element does not exist
 
     if (selectedSeeds.length === 5 && index === -1) {
-      toast.error("Only 5 seeds maximum allowed", toastr.Options)
+      toast.error("Only 5 seeds maximum allowed", toastr.defaultOptions)
     } else {
       index !== -1 ? selectedSeeds.splice(index, 1) : selectedSeeds.push({ ...song })
     }
@@ -72,23 +75,42 @@ class SpotifyModule extends React.Component {
     })
   }
 
+  //Sends request with seeds to Spotify API, returns recommendations
   recommendationWithSeed = async () => {
     const { selectedSeeds } = this.state
     const recommendations = await SpotifyFunctions.getRecommendations(selectedSeeds);
-
-    this.setState({
-      recommendedList: recommendations
-    })
+    this.setState({ recommendedList: recommendations})
   }
 
+  // Button listener to add song to library
   addToLibrary = async (musicItem) => {
-    const addedToLibrary = await SpotifyFunctions.addToLibrary(musicItem)
+    await SpotifyFunctions.addToLibrary(musicItem)
   }
+
+  previewSong = (musicItem) => {
+
+    if (musicItem.preview_url) {
+      toast.dismiss();
+      this.audioPlayer.src = musicItem.preview_url; 
+      this.audioPlayer.play()
+      this.audioPlayer.onloadeddata = (event) => {
+        toast.success(`Now Playing: ${musicItem.name}` , {autoClose : event.srcElement.duration * 1000})
+      }
+    } else {
+      this.audioPlayer.pause()
+      toast.dismiss();
+      toast.error("Sorry, no preview available for this song", toastr.defaultOptions)
+    }
+    toast.clearWaitingQueue();
+  }
+
+ 
 
   render() {
-    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
-    // console.log(this.state)
+    const { userTracks, playing, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
+
     return (
+
       <Row>
         <Col xs={3} m={3} lg={3} xl={3}>
           <Container>
@@ -107,7 +129,8 @@ class SpotifyModule extends React.Component {
             <Container>
               <CardContainer
                 cardcontent={selectedSeeds}
-              />    
+                previewSong={this.previewSong}
+              />
               <Button
                 className="generate-seeds-btn"
                 onClick={() => this.recommendationWithSeed()}
@@ -118,6 +141,7 @@ class SpotifyModule extends React.Component {
           {recommendedList.tracks ?
             <Container>
               <CardContainer
+                previewSong={this.previewSong}
                 cardcontent={recommendedList.tracks}
                 isRecommendations={this.addToLibrary}
               />

@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer/>
         <BrowserRouter>
         <Header />
           <Switch>
