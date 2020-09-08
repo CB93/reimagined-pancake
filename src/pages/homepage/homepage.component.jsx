@@ -4,7 +4,6 @@ import SpotifyContainer from '../../components/spotifycontainer/spotifycontainer
 import './homepage.styles.scss'
 const HomePage = () => (
      <div className='directory-menu'>
-       hello
       <SpotifyContainer />
     </div>
 )
