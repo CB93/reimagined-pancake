@@ -23,5 +23,13 @@
     .card-text {
       font-size: 12px;
     }
+    button {
+      background: white;
+      border-color: transparent;
+    }
+    .btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
   }
 }

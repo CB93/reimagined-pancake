@@ -6,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import Card from 'react-bootstrap/Card'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import { toast } from 'react-toastify';
 
@@ -122,8 +121,8 @@ class SpotifyModule extends React.Component {
 
 
   render() {
-    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList } = { ...this.state }
-
+    const { userTracks, userTracksPageRef, selectedSeeds, recommendedList, userInformation } = { ...this.state }
+    console.log(userInformation)
     return (
 
       <Row>
@@ -158,8 +157,8 @@ class SpotifyModule extends React.Component {
                   cardcontent={selectedSeeds}
                   previewSong={this.previewSong}
                 />
-                <Button
-                  className="generate-seeds-btn"
+                <Button 
+                  className="generate-seeds-btn badge-pill"
                   onClick={() => this.recommendationWithSeed()}
                 >Generate Songs
             </Button>

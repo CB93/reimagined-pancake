@@ -13,5 +13,6 @@ code {
 }
 
 #root {
-  background-color: #f4f7fc;
+  height: 100%;
+  background-color: #ffffff;
 }

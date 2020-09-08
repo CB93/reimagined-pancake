@@ -28,11 +28,13 @@ const SelectionContainer = (props) => {
       </Card>
       <div className="button-group">
         <Button
+          className="badge-pill"
           onClick={() => props.getOtherTracks(false)}
           disabled={props.userTracksPageRef ? false : true}
         > Previous
                 </Button>
         <Button
+          className="badge-pill"
           onClick={() => props.getOtherTracks(true)}
           disabled={props.userTracksPageRef === 40 ? true : false}
         >Next</Button>

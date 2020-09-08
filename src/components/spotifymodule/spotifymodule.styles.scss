@@ -1,6 +1,10 @@
 .favorite-card {
   max-height: 450px;
-  overflow: auto
+  overflow: auto;
+
+  .card-body {
+    padding:0;
+  }
 }
 .button-group {
   margin-top: 10px;
