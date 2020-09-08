@@ -2,6 +2,8 @@
   .card-deck{
     display: flex !important;
     flex-wrap: wrap !important;
+    align-content: center;
+    justify-content: center;
   }
   
   .card {

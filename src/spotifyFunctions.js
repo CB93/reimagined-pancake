@@ -1,4 +1,8 @@
 //spotifyFunctions.js
+import React from 'react'
+import { toast } from 'react-toastify';
+
+import * as toastr from './toastconfig';
 import Spotify from 'spotify-web-api-js';
 
 const spotifyApi = new Spotify();
@@ -85,11 +89,12 @@ export async function getRecommendations(seeds) {
 }
 
 export async function addToLibrary(musicItem) {
-  const temparray = [musicItem.id]
-
+  console.log(musicItem)
   try {
-  spotifyApi.addToMySavedTracks(temparray)
+    spotifyApi.addToMySavedTracks([musicItem.id])
+    return toast.success(`(${musicItem.name}) was added to your library`, toastr.Options)
+
   } catch (err) {
-    console.log("error")
+    return toast.error(`${err}`, toastr.Options)
   }
 }
