@@ -14,8 +14,8 @@ import SelectionContainer from '../selectioncontainer/selectioncontainer.compone
 
 import './spotifymodule.styles.scss';
 
-import * as SpotifyFunctions from '../../spotifyFunctions';
-import * as toastr from '../../toastconfig';
+import * as SpotifyFunctions from '../../../spotifyFunctions';
+import * as toastr from '../../../toastconfig';
 
 const moduleBuildState = () => ({
   userTracksPageRef: 0,

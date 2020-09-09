@@ -1,21 +1,11 @@
 import React from "react";
-import SignInAndSignUp from '../../components/sign-in-and-sign-up/sign-in-and-sign-up.component'
+import SignInAndSignUp from '../../components/login/sign-in-and-sign-up/sign-in-and-sign-up.component'
 
-class Login extends React.Component {
+const Login = () => {
 
-
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <SignInAndSignUp></SignInAndSignUp>
-    );
-  }
+  return (
+    <SignInAndSignUp />
+  );
 
 }
 

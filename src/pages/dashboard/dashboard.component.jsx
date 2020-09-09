@@ -1,10 +1,10 @@
 
 import React from 'react';
-import ConnectSpotify from '../../components/connectspotify/connectspotify.component';
-import SpotifyModule from '../../components/spotifymodule/spotifymodule.component';
+import ConnectSpotify from '../../components/dashboard/connectspotify/connectspotify.component';
+import SpotifyModule from '../../components/dashboard/spotifymodule/spotifymodule.component';
 import * as SpotifyFunctions from '../../spotifyFunctions.js'
 
-import './homepage.styles.scss'
+import './dashboard.styles.scss'
 
 class HomePage extends React.Component {
 
@@ -26,15 +26,13 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const { loggedInToSpotify, userInformation, accessToken} = this.state
+    const { loggedInToSpotify, userInformation, accessToken } = this.state
     return (
       <div>
-        {!loggedInToSpotify ? 
-                  <ConnectSpotify /> :
-
+        {!loggedInToSpotify ?
+          <ConnectSpotify /> :
           <SpotifyModule accessToken={accessToken} userInformation={userInformation} />}
-        
-         </div>
+      </div>
     );
   }
 }

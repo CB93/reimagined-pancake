@@ -1,6 +1,6 @@
 import React from "react";
-import Header from './components/header/header.component';
-import HomePage from './pages/homepage/homepage.component';
+import Header from './components/dashboard/header/header.component';
+import HomePage from './pages/dashboard/dashboard.component';
 import Login from './pages/login/login.component';
 import PrivateRoute from './routes/privateroute.component'
 
