@@ -4,7 +4,7 @@ import HomePage from './pages/dashboard/dashboard.component';
 import Login from './pages/login/login.component';
 import PrivateRoute from './routes/privateroute.component'
 
-import { auth, createUserProfileDocument } from './firebase.utils';
+import { auth, createUserProfileDocument } from './utils/firebase.utils';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 

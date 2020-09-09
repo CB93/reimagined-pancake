@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../../firebase.utils';
+import { auth } from '../../../utils/firebase.utils';
+
 
 import './header.styles.scss'
 

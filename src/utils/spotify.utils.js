@@ -1,13 +1,13 @@
 //spotifyFunctions.js
 import { toast } from 'react-toastify';
 
-import * as toastr from './toastconfig';
+import * as toastr from './toastconfig.utils';
 import Spotify from 'spotify-web-api-js';
 
 const spotifyApi = new Spotify();
 
 export function redirectUrlToSpotifyForLogin() {
-  const CLIENT_ID = '3acfac59619b4af3b219a4ff0c1547fa';
+  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI ? process.env.REACT_APP_REDIRECT_URI : 'http://localhost:3000/dashboard';
 
   const scopes = [

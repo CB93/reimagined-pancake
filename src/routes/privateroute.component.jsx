@@ -1,6 +1,7 @@
 import  React from  "react";
 import { Route, withRouter } from  "react-router-dom";
-import { auth } from '../firebase.utils';
+import { auth } from '../utils/firebase.utils';
+
 
 class PrivateRoute extends React.Component {
   componentDidMount() {

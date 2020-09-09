@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { auth, createUserProfileDocument } from '../../../firebase.utils';
+import { auth, createUserProfileDocument } from '../../../utils/firebase.utils';
 
 class SignUp extends React.Component {
   constructor() {

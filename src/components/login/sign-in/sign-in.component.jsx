@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../../../firebase.utils'
+import { auth } from '../../../utils/firebase.utils';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';

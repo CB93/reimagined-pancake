@@ -3,13 +3,13 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 var config = {
-  apiKey: "AIzaSyC8HU14TzLXCJ1zCioPSM64oSJqpNxWNF4",
-  authDomain: "spotify-app-7d164.firebaseapp.com",
-  databaseURL: "https://spotify-app-7d164.firebaseio.com",
-  projectId: "spotify-app-7d164",
-  storageBucket: "spotify-app-7d164.appspot.com",
-  messagingSenderId: "898279202982",
-  appId: "1:898279202982:web:85a0cee7aa60604ee35467"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import ConnectSpotify from '../../components/dashboard/connectspotify/connectspotify.component';
 import SpotifyModule from '../../components/dashboard/spotifymodule/spotifymodule.component';
-import * as SpotifyFunctions from '../../spotifyFunctions.js'
+import * as SpotifyFunctions from '../../utils/spotify.utils.js'
 
 import './dashboard.styles.scss'
 

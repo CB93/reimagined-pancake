@@ -1,5 +1,5 @@
 import React from 'react';
-import * as SpotifyFunctions from '../../../spotifyFunctions.js'
+import * as SpotifyFunctions from '../../../utils/spotify.utils.js'
 
 class ConnectSpotify extends React.Component {
 
