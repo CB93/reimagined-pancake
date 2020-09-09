@@ -28,11 +28,13 @@ class HomePage extends React.Component {
   render() {
     const { loggedInToSpotify, userInformation, accessToken} = this.state
     return (
-      <div className='app-container'>
+      <div>
         {!loggedInToSpotify ? 
-          <ConnectSpotify /> : 
+                  <ConnectSpotify /> :
+
           <SpotifyModule accessToken={accessToken} userInformation={userInformation} />}
-      </div>
+        
+         </div>
     );
   }
 }
