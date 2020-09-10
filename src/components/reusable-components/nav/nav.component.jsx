@@ -4,7 +4,7 @@ import { auth } from '../../../utils/firebase.utils';
 import Nav from 'react-bootstrap/Nav'
 
 
-import './header.styles.scss'
+import './nav.styles.scss'
 
 const Header = ({ currentUser }) => {
   return (
@@ -20,7 +20,7 @@ const Header = ({ currentUser }) => {
                 <Link to='/dashboard' className='option'>
                   Dashboard
                 </Link>
-                <Link className='option' onClick={() => auth.signOut()}>
+                <Link to='/' className='option' onClick={() => auth.signOut()}>
                   Sign Out
                 </Link>
               </div>

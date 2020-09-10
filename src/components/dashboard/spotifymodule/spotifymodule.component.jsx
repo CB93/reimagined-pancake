@@ -158,13 +158,13 @@ class SpotifyModule extends React.Component {
                   onClick={() => this.recommendationWithSeed()}
                 > {recommendedList.tracks ? 'Generate More Recommendations'
                   : 'Generate Recommendations'}
-            </Button>
+                </Button>
               </div>
               : <Jumbotron>
                 <h1>Hello, {userInformation.display_name}</h1>
                 <p>
                   This is a simple app, Start by picking a few songs from the left side of your
-                  top tracks. 
+                  top tracks.
                 </p>
                 <p>Click the generate recommendations button after.</p>
               </Jumbotron>

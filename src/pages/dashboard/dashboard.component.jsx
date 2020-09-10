@@ -20,9 +20,11 @@ class HomePage extends React.Component {
   // Checks URL when component mounts to see if there is an access token
   async componentDidMount() {
     const accessToken = await SpotifyFunctions.checkUrlForSpotifyAccessToken();
-    await SpotifyFunctions.setAccessToken(accessToken);
-    const fetchedUserInfo = await SpotifyFunctions.getUserInformation();
-    accessToken ? this.setState({ loggedInToSpotify: true, accessToken: accessToken, userInformation: fetchedUserInfo }) : this.setState({ loggedInToSpotify: false, accessToken: null });
+    if (accessToken) {
+      await SpotifyFunctions.setAccessToken(accessToken);
+      const fetchedUserInfo = await SpotifyFunctions.getUserInformation();
+      this.setState({ loggedInToSpotify: true, accessToken: accessToken, userInformation: fetchedUserInfo });
+    }
   }
 
   render() {

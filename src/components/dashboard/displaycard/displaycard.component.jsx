@@ -8,7 +8,6 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import './displaycard.styles.scss'
 
 const DisplayCard = (props) => {
-  // console.log(props)
   return (
     <div className="carddeck-container">
       <CardDeck>
