@@ -1,9 +1,10 @@
 export const defaultOptions = {
   hideProgressBar: true,
 }
-
-export const previewOptions = {
-  pauseOnHover: false,
-  autoClose: null,
-  pauseOnFocusLoss: false
+export const previewOptions = (options) => {
+  return {
+    ...options,
+    pauseOnHover: false,
+    pauseOnFocusLoss: false
+  }
 }

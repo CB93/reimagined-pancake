@@ -21,7 +21,7 @@ const moduleBuildState = () => ({
   userTracksPageRef: 0,
   selectedSeeds: [],
   recommendedList: [],
-  userTracks: null
+  userTracks: null,
 });
 
 
@@ -95,22 +95,28 @@ class SpotifyModule extends React.Component {
     await SpotifyFunctions.addToLibrary(musicItem)
   }
 
+  // Pauses song if a preview is already playing, loads new song and plays it
+  // Otherwise sends error toastr
   previewSong = (musicItem) => {
-
+    toast.dismiss();
+    this.audioPlayer.pause()
     if (musicItem.preview_url) {
-      toast.dismiss();
       this.audioPlayer.src = musicItem.preview_url;
-      this.audioPlayer.play()
       this.audioPlayer.onloadeddata = (event) => {
-        toastr.previewOptions.autoClose = event.srcElement.duration * 1000
-        toast.success(`Now Playing: ${musicItem.name}`, toastr.previewOptions)
+        
+        let previewOptions = toastr.previewOptions({
+          onOpen: () => this.audioPlayer.play(),
+          onClose: this.audioPlayer.pause(),
+          autoClose: event.srcElement.duration * 1000
+        })
+        let toastId = toast.success(`Now Playing: ${musicItem.name}`, previewOptions)
       }
+    
     } else {
       this.audioPlayer.pause()
       toast.dismiss();
       toast.error("Sorry, no preview available for this song", toastr.defaultOptions)
     }
-    toast.clearWaitingQueue();
   }
 
 
@@ -122,7 +128,7 @@ class SpotifyModule extends React.Component {
     return (
 
       <Row>
-        <Col xs={3} m={3} lg={3} xl={3}>
+        <Col xs={12} sm={12} m={3} lg={3} xl={3}>
           <Container>
             <h4>Top 50 Tracks</h4>
 
