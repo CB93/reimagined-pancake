@@ -4,5 +4,6 @@ export const defaultOptions = {
 
 export const previewOptions = {
   pauseOnHover: false,
-  autoClose: null
+  autoClose: null,
+  pauseOnFocusLoss: false
 }

@@ -2,6 +2,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { auth, createUserProfileDocument } from '../../../utils/firebase.utils';
+import { toast } from 'react-toastify';
+
+import * as toastr from '../../../utils/toastconfig.utils';
 
 class SignUp extends React.Component {
   constructor() {
@@ -19,7 +22,7 @@ class SignUp extends React.Component {
     const { email, password, confirmPassword } = this.state
 
     if (password !== confirmPassword) {
-      alert("passwords don't match")
+      toast.error("passwords do not match", toastr.defaultOptions)
       return
     }
 
@@ -35,7 +38,8 @@ class SignUp extends React.Component {
       })
 
     } catch (error) {
-      console.error(error);
+      toast.error(error.message, toastr.defaultOptions)
+
     }
   }
 
