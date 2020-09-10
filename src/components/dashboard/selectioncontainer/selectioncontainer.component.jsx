@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import ListOption from '../listoption/listoption.component';
 
 const SelectionContainer = (props) => {
-
   return (
     <div>
       <Card className="favorite-card">

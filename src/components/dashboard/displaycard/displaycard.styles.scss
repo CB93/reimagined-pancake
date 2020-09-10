@@ -7,6 +7,9 @@
   }
   
   .card {
+    .remove-button {
+      position: absolute;
+    }
     .card-body {
       padding: 1rem;
     }

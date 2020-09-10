@@ -150,8 +150,10 @@ class SpotifyModule extends React.Component {
             {selectedSeeds.length ?
               <div>
                 <CardContainer
+                  isSeed={true}
                   cardcontent={selectedSeeds}
                   previewSong={this.previewSong}
+                  deselect={this.isSelected}
                 />
                 <Button
                   className="generate-seeds-btn badge-pill"

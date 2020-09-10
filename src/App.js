@@ -37,10 +37,7 @@ class App extends React.Component {
             }
           })
           this.props.history.push('/dashboard')
-
-
         })
-
 
       }
       this.setState({ currentUser: userAuth })

@@ -8,6 +8,8 @@ const CardContainer = (props) => {
     <Card>
       <Card.Body>
         <DisplayCard
+          deselect={props.deselect}
+          isSeed={props.isSeed}
           previewSong={props.previewSong}
           musicItems={props.cardcontent}
           isRecommendations={props.isRecommendations}

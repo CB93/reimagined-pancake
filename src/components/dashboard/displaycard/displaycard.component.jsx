@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import { BsHeartFill, BsPlayFill } from "react-icons/bs";
+import { BsHeartFill, BsPlayFill, BsXCircleFill } from "react-icons/bs";
 
 import CardDeck from 'react-bootstrap/CardDeck'
 
@@ -28,14 +28,13 @@ const DisplayCard = (props) => {
                 <Card.Text className="subname">{musicItem.name}</Card.Text>
               </Card.Body>
               <div>
-                {props.isRecommendations
-                  ? <Button variant="light" onClick={() => props.isRecommendations(musicItem)}><BsHeartFill color={'red'} /></Button>
-                  : null
-                }
                 <Button variant="light" onClick={() => props.previewSong(musicItem)}><BsPlayFill size={'1.5em'} /></Button>
+                {props.isRecommendations ?
+                    <Button variant="light" onClick={() => props.isRecommendations(musicItem)}><BsHeartFill color={'red'} /></Button>
+                  : <Button variant="light" onClick={() => props.deselect(musicItem)}><BsXCircleFill size={'1.0em'} /></Button>}
               </div>
-
             </Card>
+
           )
         })}
       </CardDeck>
