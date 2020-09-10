@@ -5,6 +5,7 @@ export const previewOptions = (options) => {
   return {
     ...options,
     pauseOnHover: false,
-    pauseOnFocusLoss: false
+    pauseOnFocusLoss: false,
+    closeButton: false
   }
 }

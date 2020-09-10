@@ -98,7 +98,7 @@ class SpotifyModule extends React.Component {
   // Pauses song if a preview is already playing, loads new song and plays it
   // Otherwise sends error toastr
   previewSong = (musicItem) => {
-    toast.dismiss();
+    toast.dismiss(); 
     this.audioPlayer.pause()
     if (musicItem.preview_url) {
       this.audioPlayer.src = musicItem.preview_url;
@@ -106,7 +106,7 @@ class SpotifyModule extends React.Component {
         
         let previewOptions = toastr.previewOptions({
           onOpen: () => this.audioPlayer.play(),
-          onClose: this.audioPlayer.pause(),
+          onClick: () => this.audioPlayer.pause(),
           autoClose: event.srcElement.duration * 1000
         })
         let toastId = toast.success(`Now Playing: ${musicItem.name}`, previewOptions)
