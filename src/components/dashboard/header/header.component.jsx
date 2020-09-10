@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../../utils/firebase.utils';
+import Nav from 'react-bootstrap/Nav'
 
 
 import './header.styles.scss'
@@ -8,18 +9,20 @@ import './header.styles.scss'
 const Header = ({ currentUser }) => {
   return (
     <div className='header'>
-      <nav>
+      <Nav>
         <div className='header-options'>
-          <Link to="/" className="logo">
+          <Link to='/' className='logo'>
             Spotify Dashboard<span>.</span>
           </Link>
           {
             currentUser ? (
-              <div>
-                <Link to="/dashboard" className="logo">
-                  Spotify Dashboard<span>.</span>
+              <div className='options'>
+                <Link to='/dashboard' className='option'>
+                  Dashboard
                 </Link>
-                <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
+                <Link className='option' onClick={() => auth.signOut()}>
+                  Sign Out
+                </Link>
               </div>
             ) : (
                 null
@@ -27,7 +30,7 @@ const Header = ({ currentUser }) => {
 
           }
         </div>
-      </nav>
+        </Nav>
     </div>
   )
 }
